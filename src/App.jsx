@@ -1,10 +1,10 @@
-import React, {Component} from 'react';
-import Finance from 'financejs';
+import React, {Component} from 'react'
+import Finance from 'financejs'
 // import styled from 'styled-components'
-import logo from './logo.svg';
-import './App.css';
+import logo from './logo.svg'
+import './App.css'
 
-import {Row, Col} from './grid';
+import {Row, Col} from './grid'
 
 const finance = new Finance()
 
@@ -31,12 +31,16 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo"/>
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        <label>Amortisation:</label>
-        <input type="text" onChange={this.handleChange}/>
-        <p>{this.state.amortisation}</p>
+      <Row>
+        <Col>
+          <label>Wage 1:</label>
+          <input type="text" onChange={this.handleChange}/>
+          <p>{this.state.amortisation}</p>
+        </Col>
+      </Row>
         <div></div>
-     </div> );
+     </div> )
   }
 }
 
-export default App;
+export default App
