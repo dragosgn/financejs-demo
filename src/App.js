@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Finance from "financejs"
+import styled from "styled-components"
 
 
 const finance = new Finance()
+
 
 class App extends Component {
   constructor(props) {
@@ -33,7 +35,7 @@ class App extends Component {
         <input type="text" onChange={this.handleChange} />
         <p>{this.state.amortisation}</p>
         <div>
-          
+
         </div>
       </div>
     );
