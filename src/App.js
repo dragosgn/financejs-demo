@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import Finance from 'financejs'
 import styled from 'styled-components'
 import {Field, reduxForm} from 'redux-form'
-import {compose} from "recompose"
+import {compose, withHandlers} from "recompose"
 
 import logo from './logo.svg'
 import './App.css'
@@ -37,23 +37,23 @@ class App extends Component {
         <img src={logo} className="App-logo" alt="logo"/>
         <h1 className="App-title">Welcome to React</h1>
       </header>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit(this.props.onSubmit)}>
         <Row>
           <Col>
             <label>Wage 1:</label>
-            <Field component={Input} name="wage.1"></Field>
+            <Field component={Input} name="wage.1" type="text"></Field>
           </Col>
         </Row>
         <Row>
           <Col>
             <label>Wage 2:</label>
-            <Field component={Input} name="wage.2"></Field>
+            <Field component={Input} name="wage.2"  type="text"></Field>
           </Col>
         </Row>
         <Row>
           <Col>
             <label>Amortisation:</label>
-            <input type="text" name="amortisation" onChange={this.handleChange}/>
+            <input type="text" name="amortisation" onChange={this.handleChange}  type="text"/>
             <p>{this.state.amortisation}</p>
           </Col>
         </Row>
@@ -62,4 +62,11 @@ class App extends Component {
   }
 }
 
-export default compose(App)(reduxForm({form: "monthlySpendingsForm"}))
+export default compose(
+  reduxForm({form: "monthlySpendingsForm"}),
+  withHandlers({
+    onSubmit: () => (values) => {
+      console.log(values)
+    }
+  })
+)(App)
