@@ -1,19 +1,17 @@
-import React, {Component} from 'react'
-import Finance from 'financejs'
-import styled from 'styled-components'
+import React from 'react'
+// import Finance from 'financejs'
+// import styled from 'styled-components'
 import {Field, reduxForm} from 'redux-form'
 import {compose, withHandlers} from "recompose"
 
 import logo from './logo.svg'
 import './App.css'
 import {Row, Col} from './grid'
+import {standardDeviation} from 'simple-statistics'
 
-const finance = new Finance()
 
-const Input = styled.input `
 
-`
-
+// const finance = new Finance()
 
 const App = ({handleSubmit, onSubmit, handleChange}) => (<div className="App">
      <header className="App-header">
@@ -49,8 +47,8 @@ export default compose(
     onSubmit: () => (values) => {
       console.log(values)
     },
-    handleChange: () => (e) => {
-      console.log(finance.AM(e.target.value, 7.5, 5, 0))
+    handleChange: () => (values) => {
+      console.log("standard deviation", standardDeviation(values))
     }
   })
 )(App)
