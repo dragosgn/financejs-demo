@@ -34,6 +34,9 @@ class App extends Component {
       <Row>
         <Col>
           <label>Wage 1:</label>
+          <input type="text" />
+          <label>Wage 2:</label>
+          <input type="text" />
           <input type="text" onChange={this.handleChange}/>
           <p>{this.state.amortisation}</p>
         </Col>
