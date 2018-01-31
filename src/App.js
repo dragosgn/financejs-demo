@@ -18,7 +18,7 @@ const App = ({handleSubmit, onSubmit, handleChange}) => (<div className="App">
        <img src={logo} className="App-logo" alt="logo"/>
        <h1 className="App-title">Welcome to React</h1>
      </header>
-     <form onSubmit={handleSubmit(onSubmit)}>
+     <form onSubmit={handleSubmit(onSubmit)} onChange={handleChange}>
        <Row>
          <Col>
            <label>Wage 1:</label>
@@ -33,11 +33,11 @@ const App = ({handleSubmit, onSubmit, handleChange}) => (<div className="App">
        </Row>
        <Row>
          <Col>
-           <label>Amortisation:</label>
-           <input component="input" name="amortisation" onChange={handleChange}  type="text"/>
-           <p>{this.state.amortisation}</p>
+           <label>Wage.3:</label>
+           <Field component="input" name="wage.3" type="text"/>
          </Col>
        </Row>
+       <button type="submit">Submit</button>
      </form>
    </div>)
 
@@ -45,10 +45,11 @@ export default compose(
   reduxForm({form: "monthlySpendingsForm"}),
   withHandlers({
     onSubmit: () => (values) => {
+      let sDev = standardDeviation(values)
       console.log(values)
+      console.log(sDev)
     },
-    handleChange: () => (values) => {
-      console.log("standard deviation", standardDeviation(values))
+    handleChange: () => () => {
     }
   })
 )(App)
