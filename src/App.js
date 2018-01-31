@@ -35,13 +35,24 @@ class App extends Component {
         <Col>
           <label>Wage 1:</label>
           <input type="text" />
-          <label>Wage 2:</label>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <label>Wage 3:</label>
           <input type="text" />
+        </Col>
+      </Row>
+      <Row>
+
+      </Row>
+      <Row>
+        <Col>
+          <label>Amortisation:</label>
           <input type="text" onChange={this.handleChange}/>
           <p>{this.state.amortisation}</p>
         </Col>
       </Row>
-        <div></div>
      </div> )
   }
 }
