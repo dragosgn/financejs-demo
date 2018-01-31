@@ -3,6 +3,7 @@ import React from 'react'
 // import styled from 'styled-components'
 import {Field, reduxForm} from 'redux-form'
 import {compose, withHandlers} from "recompose"
+import numeral from 'numeral'
 
 import logo from './logo.svg'
 import './App.css'
@@ -22,19 +23,19 @@ const App = ({handleSubmit, onSubmit, handleChange}) => (<div className="App">
        <Row>
          <Col>
            <label>Wage 1:</label>
-           <Field component="input" name="wage.0" type="text"></Field>
+           <Field component="input" name="firstWage" type="text"></Field>
          </Col>
        </Row>
        <Row>
          <Col>
            <label>Wage 2:</label>
-           <Field component="input" name="wage.1"  type="text"></Field>
+           <Field component="input" name="secondWage"  type="text"></Field>
          </Col>
        </Row>
        <Row>
          <Col>
            <label>Wage.3:</label>
-           <Field component="input" name="wage.2" type="text"/>
+           <Field component="input" name="thirdWage" type="text"/>
          </Col>
        </Row>
        <button type="submit">Submit</button>
@@ -45,8 +46,7 @@ export default compose(
   reduxForm({form: "monthlySpendingsForm"}),
   withHandlers({
     onSubmit: () => (values) => {
-      let newValues = Object.keys(values).map((key) => values[key] )
-      let sDev = standardDeviation(newValues)
+      let sDev = standardDeviation(Object.keys(values).map((key) => values[key]).map(i => numeral(i).value()))
       console.log(sDev)
     },
     handleChange: () => () => {
