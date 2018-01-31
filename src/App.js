@@ -1,12 +1,17 @@
 import React, {Component} from 'react'
 import Finance from 'financejs'
-// import styled from 'styled-components'
+import styled from 'styled-components'
 import logo from './logo.svg'
 import './App.css'
 
 import {Row, Col} from './grid'
 
 const finance = new Finance()
+
+
+const Input = styled.input`
+
+`
 
 class App extends Component {
   constructor(props) {
@@ -39,12 +44,9 @@ class App extends Component {
       </Row>
       <Row>
         <Col>
-          <label>Wage 3:</label>
+          <label>Wage 2:</label>
           <input type="text" />
         </Col>
-      </Row>
-      <Row>
-
       </Row>
       <Row>
         <Col>
