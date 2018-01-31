@@ -1,9 +1,11 @@
 import React, {Component} from 'react'
 import Finance from 'financejs'
 import styled from 'styled-components'
+import { Field, reduxForm } from 'redux-form'
+import compose from "recompose"
+
 import logo from './logo.svg'
 import './App.css'
-
 import {Row, Col} from './grid'
 
 const finance = new Finance()
@@ -36,10 +38,11 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo"/>
           <h1 className="App-title">Welcome to React</h1>
         </header>
+    <form>
       <Row>
         <Col>
           <label>Wage 1:</label>
-          <input type="text" />
+            <Field></Field>
         </Col>
       </Row>
       <Row>
@@ -55,8 +58,11 @@ class App extends Component {
           <p>{this.state.amortisation}</p>
         </Col>
       </Row>
+    </form>
      </div> )
   }
 }
 
-export default App
+export default compose(App)(
+  reduxForm({ form: "monthlySpendingsForm" })
+)
