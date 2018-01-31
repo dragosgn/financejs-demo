@@ -14,59 +14,43 @@ const Input = styled.input `
 
 `
 
-class App extends Component {
-  constructor(props) {
-    super(props)
-    this.handleChange = this.handleChange.bind(this)
-    this.state = {
-      amortisation: ''
-    }
-  }
 
-  handleChange(e) {
-    e.preventDefault()
-    this.setState({
-      amortisation: finance.AM(e.target.value, 7.5, 5, 0)
-    })
-  }
-
-  render() {
-    const {handleSubmit} = this.props
-    return (<div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo"/>
-        <h1 className="App-title">Welcome to React</h1>
-      </header>
-      <form onSubmit={handleSubmit(this.props.onSubmit)}>
-        <Row>
-          <Col>
-            <label>Wage 1:</label>
-            <Field component={Input} name="wage.1" type="text"></Field>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <label>Wage 2:</label>
-            <Field component={Input} name="wage.2"  type="text"></Field>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <label>Amortisation:</label>
-            <input type="text" name="amortisation" onChange={this.handleChange}  type="text"/>
-            <p>{this.state.amortisation}</p>
-          </Col>
-        </Row>
-      </form>
-    </div>)
-  }
-}
+const App = ({handleSubmit, onSubmit, handleChange}) => (<div className="App">
+     <header className="App-header">
+       <img src={logo} className="App-logo" alt="logo"/>
+       <h1 className="App-title">Welcome to React</h1>
+     </header>
+     <form onSubmit={handleSubmit(onSubmit)}>
+       <Row>
+         <Col>
+           <label>Wage 1:</label>
+           <Field component="input" name="wage.1" type="text"></Field>
+         </Col>
+       </Row>
+       <Row>
+         <Col>
+           <label>Wage 2:</label>
+           <Field component="input" name="wage.2"  type="text"></Field>
+         </Col>
+       </Row>
+       <Row>
+         <Col>
+           <label>Amortisation:</label>
+           <input component="input" name="amortisation" onChange={handleChange}  type="text"/>
+           <p>{this.state.amortisation}</p>
+         </Col>
+       </Row>
+     </form>
+   </div>)
 
 export default compose(
   reduxForm({form: "monthlySpendingsForm"}),
   withHandlers({
     onSubmit: () => (values) => {
       console.log(values)
+    },
+    handleChange: () => (e) => {
+      console.log(finance.AM(e.target.value, 7.5, 5, 0))
     }
   })
 )(App)
