@@ -22,19 +22,19 @@ const App = ({handleSubmit, onSubmit, handleChange}) => (<div className="App">
        <Row>
          <Col>
            <label>Wage 1:</label>
-           <Field component="input" name="wage.1" type="text"></Field>
+           <Field component="input" name="wage.0" type="text"></Field>
          </Col>
        </Row>
        <Row>
          <Col>
            <label>Wage 2:</label>
-           <Field component="input" name="wage.2"  type="text"></Field>
+           <Field component="input" name="wage.1"  type="text"></Field>
          </Col>
        </Row>
        <Row>
          <Col>
            <label>Wage.3:</label>
-           <Field component="input" name="wage.3" type="text"/>
+           <Field component="input" name="wage.2" type="text"/>
          </Col>
        </Row>
        <button type="submit">Submit</button>
@@ -45,8 +45,8 @@ export default compose(
   reduxForm({form: "monthlySpendingsForm"}),
   withHandlers({
     onSubmit: () => (values) => {
-      let sDev = standardDeviation(values)
-      console.log(values)
+      let newValues = Object.keys(values).map((key) => values[key] )
+      let sDev = standardDeviation(newValues)
       console.log(sDev)
     },
     handleChange: () => () => {
